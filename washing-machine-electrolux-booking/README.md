@@ -1,6 +1,6 @@
 ---
 name: washing-bookings
-description: Query current Sjötungan laundry bookings (Tvättstuga 2) via the check_bookings.sh CLI and config.yaml. The agent must ensure config.yaml contains login arguments: user and password (in quotes). Use whenever Aleks or Nat asks “when is our next washing time?” or needs a summary of existing bookings pulled directly from ELS Boka Direkt.
+description: Manage Sjötungan ELS Boka Direkt laundry bookings using config.yaml. The agent must ensure config.yaml contains quoted login values (base_url, user, password), a populated facilities list, and weekly_desired_bookings. Use to initialize credentials, check bookings, and schedule recurring weekly slots as configured.
 ---
 
 # Washing Bookings
