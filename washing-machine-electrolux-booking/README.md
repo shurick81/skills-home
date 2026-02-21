@@ -1,5 +1,5 @@
 ---
-name: washing-bookings
+name: washing-machine-electrolux-booking
 description: Manage Sjötungan ELS Boka Direkt laundry bookings using config.yaml. The agent must ensure config.yaml contains quoted login values (base_url, user, password), a populated facilities list, and weekly_desired_bookings. Use to initialize credentials, check bookings, and schedule recurring weekly slots as configured.
 ---
 
