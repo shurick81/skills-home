@@ -86,11 +86,23 @@ BOOKINGS_HTML=$(echo "$RESP2" | perl -0777 -ne 'if (/<table[^>]*DataGridBookings
 
 ITEMS=""
 if [ -n "$BOOKINGS_HTML" ] && echo "$BOOKINGS_HTML" | grep -q '<td'; then
-  ITEMS=$(echo "$BOOKINGS_HTML" | perl -0777 -ne 'while (/<tr[^>]*>.*?<\/tr>/sg) { print "$&\n" }' | while read -r row; do
-    date=$(echo "$row" | perl -ne 'if (/<td[^>]*><font[^>]*>([^<]*)/) { print $1 }' | sed -n '1p')
-    location=$(echo "$row" | perl -ne 'if (/<td[^>]*><font[^>]*>([^<]*)/) { print $1 }' | sed -n '2p')
-    start=$(echo "$row" | perl -ne 'if (/<td[^>]*><font[^>]*>([^<]*)/) { print $1 }' | sed -n '3p')
-    end=$(echo "$row" | perl -ne 'if (/<td[^>]*><font[^>]*>([^<]*)/) { print $1 }' | sed -n '5p')
+  ITEMS=$(echo "$BOOKINGS_HTML" | perl -0777 -ne '
+    while (/<tr[^>]*>.*?<\/tr>/sg) {
+      my $row = $&;
+      my @t = $row =~ /<td[^>]*>(.*?)<\/td>/sg;
+      @t = map {
+        my $x = $_;
+        $x =~ s/<[^>]+>//g;
+        $x =~ s/&nbsp;/ /g;
+        $x =~ s/\s+/ /g;
+        $x =~ s/^\s+|\s+$//g;
+        $x;
+      } @t;
+      next if @t < 4;
+      print join("\t", @t[0..3]), "\n";
+    }
+  ' | while IFS=$'\t' read -r date location start end; do
+    [ -z "$date" ] && continue
     printf '{"date":"%s","location":"%s","start":"%s","end":"%s"}\n' \
       "$date" "$location" "$start" "$end"
   done | paste -sd ',' -)
