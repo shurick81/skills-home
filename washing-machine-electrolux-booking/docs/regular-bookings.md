@@ -1,4 +1,4 @@
-# Regular bookings
+# Weekly bookings
 
 ## Purpose
 Book a recurring weekly slot using the preferences defined in config.yaml.
@@ -11,7 +11,7 @@ Book a recurring weekly slot using the preferences defined in config.yaml.
 1. Review weekly_desired_bookings in config.yaml and update as needed.
 2. Run the booking script (no arguments required; it reads config.yaml):
 
-scripts/make_regular_bookings.sh
+scripts/make_weekly_bookings.sh
 
 ## Notes
 - The script uses the first entry in weekly_desired_bookings.

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# make_regular_bookings.sh — Book a laundry/facility slot at ELS Boka Direkt
+# make_weekly_bookings.sh — Book a laundry/facility slot at ELS Boka Direkt
 #
 # Navigates the booking calendar, finds the first free occurrence of the
 # requested day + time on the chosen terminal, and books it.
@@ -7,7 +7,7 @@
 # ─────────────────────────────────────────────────────────────────────
 # USAGE
 # ─────────────────────────────────────────────────────────────────────
-#   ./make_regular_bookings.sh
+#   ./make_weekly_bookings.sh
 #
 # Reads weekly_desired_bookings and credentials from config.yaml.
 #
