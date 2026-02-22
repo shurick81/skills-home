@@ -9,23 +9,38 @@ ELS Boka is an Electrolux proprietary booking system that is widely used in Scan
 
 ```mermaid
 flowchart LR
-  subgraph User_Side["Local Site"]
-    U[User]
-    A["Client App<br/>(for example, Claude Desktop)"]
-    U --> A
-  end
+  U[User]
+  A["Client App<br/>(for example, Claude Desktop)"]
 
-  subgraph OpenAI_Cloud["OpenAI Cloud"]
-    C[Cloud Agent Runtime / Orchestrator]
-    L[Remote LLM]
-    C --> L
-  end
+  R[Cloud Agent Runtime / Orchestrator]
+  L[Remote LLM]
 
   E[ELS Boka bookings]
 
-  A --> C
+  U --> A
+  R --> L
+  A --> R
   A --> E
 ```
+
+Examples of client apps:
+
+- Anthropic Claude Desktop
+- Anthropic Claude Code
+- OpenAI Codex
+- OpenClaw Chat Channels
+
+Examples of Agent Runtime
+
+- Anthropic orchestrator
+- OpenAI orchestrator
+- OpenClaw Agent Runtime
+
+Examples of LLM
+
+- OpenAI Codex
+- Anthropic Opus
+- Meta Llama
 
 ## Initialization
 
@@ -38,10 +53,10 @@ Before being able to manage bookings, initialization should be complete. Initiat
 
 More details: [docs/initialization.md](docs/initialization.md)
 
-# Check Current Bookings
+## Check Current Bookings
 
 Fetch current bookings and summarize results: [docs/checking-bookings.md](docs/checking-bookings.md).
 
-# Make Regular Bookings
+## Make Regular Bookings
 
 Current implementation only allows making weekly regular bookings. When the skill is initialized, user provides information about desired schedule for the weekly bookings: which day of week and what time should be booked. The skill is making the bookings according to the desired schedule: [docs/regular-bookings.md](docs/regular-bookings.md)
