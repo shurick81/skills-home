@@ -1,5 +1,5 @@
 ---
-name: washing-machine-electrolux-booking
+name: electrolux-els-boka-booking
 description: Manage ELS Boka laundry and other ELS Boka bookings. Current implementation of this skill is capable of checking current bookings and making regular bookings. Use to initialize credentials, check bookings, and schedule recurring weekly slots as configured.
 ---
 
